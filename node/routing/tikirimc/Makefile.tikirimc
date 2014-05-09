@@ -1,0 +1,3 @@
+TIKIRIMC_SOURCEFILES = tikirimc.c tikirimc-system.c subcast.c
+
+PROJECT_SOURCEFILES += $(TIKIRIMC_SOURCEFILES)

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder/java/se/sics/cooja/plugins
+END
+PacketBuffer.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder/java/se/sics/cooja/plugins/PacketBuffer.java
+END
+SerialServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder/java/se/sics/cooja/plugins/SerialServer.java
+END
+Packet.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder/java/se/sics/cooja/plugins/Packet.java
+END
+SFClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder/java/se/sics/cooja/plugins/SFClient.java
+END
+ClientInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder/java/se/sics/cooja/plugins/ClientInfo.java
+END
+SerialForwarder.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder/java/se/sics/cooja/plugins/SerialForwarder.java
+END
+SFController.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder/java/se/sics/cooja/plugins/SFController.java
+END
+TCPServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder/java/se/sics/cooja/plugins/TCPServer.java
+END

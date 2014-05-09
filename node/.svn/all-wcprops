@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/tikiridb/!svn/ver/386/tags/0.2/node
+END
+packetizer.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/packetizer.c
+END
+tikiridb.c
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/tikiridb.c
+END
+TODO
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/TODO
+END
+packetizer.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/packetizer.h
+END
+tikiridb.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/tikiridb.h
+END
+Makefile.tikiridb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/Makefile.tikiridb
+END

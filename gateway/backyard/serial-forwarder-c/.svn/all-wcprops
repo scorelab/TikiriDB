@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/backyard/serial-forwarder-c
+END
+serial.c
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/backyard/serial-forwarder-c/serial.c
+END
+main.c
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/backyard/serial-forwarder-c/main.c
+END
+serial.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/backyard/serial-forwarder-c/serial.h
+END
+socket.c
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/backyard/serial-forwarder-c/socket.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/backyard/serial-forwarder-c/Makefile
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/backyard/serial-forwarder-c/README
+END
+socket.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/backyard/serial-forwarder-c/socket.h
+END

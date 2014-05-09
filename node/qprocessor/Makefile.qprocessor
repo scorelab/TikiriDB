@@ -1,0 +1,5 @@
+QPROCESSOR_SOURCEFILES = messages.c qprocessor.c qtable.c attr-table.c qmalloc.c \
+                         nw-types.c 
+
+
+CONTIKI_SOURCEFILES += $(QPROCESSOR_SOURCEFILES)

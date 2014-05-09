@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql
+END
+ncurses-test.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/ncurses-test.c
+END
+tsql.sql
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/tsql.sql
+END
+history.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/history.c
+END
+tikirisql.y
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/tikirisql.y
+END
+pthread-test.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/pthread-test.c
+END
+parser-helper.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/parser-helper.c
+END
+serializer.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/serializer.h
+END
+parser-helper.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/parser-helper.h
+END
+sf-client.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/sf-client.c
+END
+attr-index.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/attr-index.h
+END
+TODO
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/TODO
+END
+Makefile.new
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/Makefile.new
+END
+tikirisql.l
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/tikirisql.l
+END
+help.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/help.txt
+END
+rimeaddr.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/rimeaddr.c
+END
+catalog_sm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/catalog_sm.xml
+END
+Makefile.bak
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/Makefile.bak
+END
+socket.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/socket.c
+END
+sf-client.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/sf-client.h
+END
+version.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/version.h
+END
+rimeaddr.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/rimeaddr.h
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/Makefile
+END
+socket.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/tikirisql/socket.h
+END

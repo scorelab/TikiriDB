@@ -1,0 +1,165 @@
+                                TikiriDB
+                               ==========
+
+* Introduction
+------------------------------------------------------------------------------------
+
+TikiriDB is a database abstraction layer for Contiki operating system which enables 
+a query interface to acquire required data in highly efficient manner. After setting 
+up the sensor network with TikiriDB, it is possible to gather data without having 
+the knowledge of programming sensor nodes. TikiriDB will provide a query language 
+which is more similar to conventional query language with additional syntax to 
+comply with sensor network environment. 
+
+Current version of TikiriDB is only designed to run on Cooja which is the simulator 
+used in Contiki operating system.
+
+* High-Level Functional Overview
+------------------------------------------------------------------------------------
+
+End users use TikiriSQL client to send queries to the sensor network. The TikiriSQL 
+client parses the entered textual SQL statements and converts them to a machine 
+friendly format. Then the formated query is sent to the Serial Forwarder. The 
+Serial Forwarder is an application runs on the gateway computer. It's task is to 
+forward the packets received from serial line via a TCP connection and vice-versa.
+Then the node connected to the gateway computer via the serial line sends received 
+query to the sensor network.
+
+When a query is received to a sensor node, the query is stored in node's memory 
+and executed periodically as defined in the query. Query results are sent back to 
+the query originator node on each successful execution. The TikiriSQL client 
+receives these results via Serial Forwarder and displays them accordingly to the 
+end user.
+
+* Directory hierarchy of the tar-ball
+-----------------------------------------------------------------------------------
+tikiridb
+│
+├── cooja
+│   └── plugins
+│       └── serial_forwarder
+│
+├── gateway
+│   ├── tikirisql
+│   └── serial-forwarder-cpp
+│
+├── node
+│   ├── qprocessor
+│   ├── routing
+│   └── tikiriac
+│   
+├── test-apps
+│   ├── test-squery.c
+│   └── test-routing.c
+│   
+└── README
+
+
+There are THREE main components in this package  which are required to test the application in cooja
+   *. serial_forwarder 
+   *. tikirisql  
+   *. test-apps 
+
+serial_forwarder: plugin for cooja is located in cooja>plugins the installation instructions 
+of the plugin is illustrated bellow. This plugin will enable the connectivity of cooja simulated
+environment and tikirisql.
+
+tikirisql: the TikiriDB client which parses and validates the query and  is locate in gateway directory. 
+
+test-apps: the testing implementations of qprodessor TikiriDB library. This will be used to 
+test the functionality of the TikiriDB system.
+
+Other components developed and under development which is required for real  deployment
+   *. serial-forwarder-cpp 
+   *. routing
+   *. tikiriac 
+
+serial-forwarder-cpp: provides the connectivity between real sensor network and the gateway computer (tikirisql)
+through serial port. 
+
+routing: implementing the energy efficient routing protocol
+
+tikiriac: access control module for TikiriDB to prevent unauthorized access, control different privilege levels,
+prevent node capturing attacks, ... etc. 
+
+* Installation
+-------------------------------------------------------------------------------------
+
+The following installation steps are for a Debian based systems(i.e: debian, ubuntu)
+
+1. Install Cooja as explained in the steps 4 and 5 at  
+   http://www.sics.se/contiki/tutorials/tutorial-installing-contiki-and-cooja-on-ubuntu-linux-8.10.html
+   (Use the CVS version of Cooja)
+
+2. Configure the serial forwarder plugin for the Cooja as follows.
+
+   I. Copy "serial_forwarder" directory into "<Contiki Directory>/tools/cooja/apps" directory.
+
+   II. Add the follwoing elements to the "<Contiki Directory>/tools/cooja/build.xml" file.  
+       a. As a child element of <target name="clean" depends="init">, add the following
+          <ant antfile="build.xml" dir="apps/serial_forwarder" target="clean" inheritAll="false"/>
+
+       b. As a child element of <target name="jar" depends="jar_cooja"> add the following
+          <ant antfile="build.xml" dir="apps/serial_forwarder" target="jar" inheritAll="false"/>
+      
+   III. Replace the variable "DEFAULT_PROJECTDIRS" in the file "<Contiki Directory>/tools/cooja/config/external_tools_linux.config"
+        with the following
+        DEFAULT_PROJECTDIRS = [CONTIKI_DIR]/tools/cooja/apps/mrm;[CONTIKI_DIR]/tools/cooja/apps/mspsim;[CONTIKI_DIR]/tools/cooja/apps/avrora;[CONTIKI_DIR]/tools/cooja/apps/serial_forwarder  
+
+ Note: The term "<Contiki Directory>" is used to denote the directory where 
+       the Contiki is installed.
+
+3. Install additional packages that are needed to compile tikirisql(TikiriDB client).
+   In the terminal type: 
+   # apt-get install flex bison
+
+4. Compile tikirisql client
+   In the terminal type:
+   # cd <TikiriDB directory>/gateway/tikirisql
+   # make
+
+5. Configure Contiki source
+   Open the file "<TikiriDB directory>/test-apps/Makefile" with your favorite 
+   text editor and set the Contiki installation directory appropriately.
+
+* Running TikiriDB
+----------------------------------------------------------------------------------------------- 
+
+For the sake of convenience, a saved Cooja simulation file can be used to test TikiriDB.
+The saved  simulation files are located at <TikiriDB directory>/test-apps directory.
+
+To run the simulation, 
+In the terminal, type:
+  # cd <TikiriDB directory>/test-apps
+  # make test-app.csc
+
+Or you can compile from the biginning using following commands,
+  # make test-app.cooja TARGET=cooja
+
+If everything has been configured correctly, the saved simulation will be loaded. The
+Serial Forwarder dialog will be opened for node 1. Start the Serial Forwarder and
+the simulation. The default port for the Serial Forwarder will be 25600 + node id.
+
+To run tikirisql,
+In the terminal, type:
+  # cd cd <TikiriDB directory>/gateway/tikirisql
+  # ./tikirisql -H localhost -P 25601
+
+To get the tikirisql help use the command "\h"(without quotes) in the tsql prompt.
+
+Example queries:
+SELECT temp,humid,node FROM sensors SAMPLE PERIOD 1;
+SELECT node,temp FROM sensors WHERE temp = 20 SAMPLE PERIOD 2 FOR 100;
+SELECT temp,humid,node FROM sensors WHERE nodeid < 10 SAMPLE PERIOD 1 FOR 10;
+
+
+TODO
+-----------------------------------------------------------------------------------------------
+
+* Many portions of the system(i.e: protocols used) are undocumented. Therefore, a
+  proper documentation has to be done.
+* Port TikiriDB to run on real sensor node platforms(i.e: sky, MICAz)   
+* Implementing TikiriAC access control module for TikiriDB
+* Add more functionalities to tikirisql query language
+* Develop friendly user interfaces for tikirisql client
+* Energy efficient routing protocol for long term usage of TikiriDB

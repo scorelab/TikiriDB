@@ -1,0 +1,31 @@
+##### Query message format #######
+ 
+ ++++++++++++++++++
+ +  Query header  +          
+ ++++++++++++++++++
+ +                +
+ +  Query body    +  Query boday can be a SELECT, CREATE or DELETE query
+ +                +
+ ++++++++++++++++++
+
+##### SELECT Query message format #######
+
+
+ +++++++++++++++++++
+ +                 +
+ +  SELECT Query   +
+ +    Header       +
+ +                 +  
+ +++++++++++++++++++
+ +                 +
+ +     Fields      +
+ +                 +
+ +++++++++++++++++++
+ +                 +
+ +   Expressions   +
+ +                 +
+ +++++++++++++++++++
+
+
+
+

@@ -1,0 +1,9 @@
+
+TIKIRIDB_SOURCES = packetizer-arch.c tikiridb-arch.c
+
+MSB430_MODIFIED_DIR = $(TIKIRIDB_DIR)/platform-modified/msb430 
+
+PROJECT_SOURCEFILES += $(TIKIRIDB_SOURCES)
+
+PROJECTDIRS += $(MSB430_MODIFIED_DIR)
+PROJECTDIRS += $(TIKIRIDB_DIR)/platform-modified/msb430/dev

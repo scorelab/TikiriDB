@@ -1,0 +1,135 @@
+/*
+ * Copyright (c) 2009, Wireless Ad-Hoc Sensor Network Laboratory,
+ * University of Colombo School of Computting.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. Neither the name of the Institute nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ * This file is part of the tikiridb system.
+ */
+
+/**
+ * \file
+ *         Tikiri Database Source file
+ * \author
+ *         Kasun Hewage <kch@ucsc.cmb.ac.lk>        
+ */
+
+
+#include "tikiridb.h"
+#include "contiki.h"
+#include "routing.h"
+#include "qprocessor.h"
+#include "packetizer.h"
+
+#define DEBUG 1
+
+#if DEBUG
+#include <stdio.h>
+#ifdef PLATFORM_AVR
+#include <avr/pgmspace.h>
+#define PRINTF(_fmt_, ...) printf_P(PSTR(_fmt_), ##__VA_ARGS__)
+#else /* PLATFORM_AVR */
+#define PRINTF(...) printf(__VA_ARGS__)
+#endif /* PLATFORM_AVR */
+#else /* DEBUG  */
+#define PRINTF(...)
+#endif
+
+#ifdef CONF_ROUTING_CHANNEL
+#define ROUTING_CHANNEL CONF_ROUTING_CHANNEL
+#else
+#define ROUTING_CHANNEL 129
+#endif
+
+static void routing_recv(struct routing_conn *c, const rimeaddr_t *from);
+int qprocessor_send_data(const rimeaddr_t *receiver);
+
+static qprocessor_callbacks_t qprocessor_callbacks = {NULL, qprocessor_send_data};
+static struct routing_conn routing_conn;
+static const struct routing_callbacks routing_callbacks = {routing_recv};
+
+PROCESS(tikiridb_process, "Tikiridb Process");
+
+/*---------------------------------------------------------------------------*/
+int 
+qprocessor_send_data(const rimeaddr_t *receiver)
+{
+  return routing_send(&routing_conn, receiver);
+}
+
+/*---------------------------------------------------------------------------*/
+static void
+routing_recv(struct routing_conn *c, const rimeaddr_t *from)
+{
+  if(qprocessor_callbacks.recv) {
+    qprocessor_callbacks.recv(from);  
+  }
+}
+/*---------------------------------------------------------------------------*/
+PROCESS_THREAD(tikiridb_process, ev, data)
+{
+  PROCESS_BEGIN();
+  qmessage_header_t * qmessage_header;
+  int packet_length;
+  while(1) {
+
+    PROCESS_WAIT_EVENT_UNTIL(ev == packet_data_event_message);
+    packet_length = get_packet_data_len();
+
+    // The query message should be larger than the message header + query message header
+    if(packet_length <= (sizeof(message_header_t) + sizeof(qmessage_header_t))) {
+      PRINTF("Length of query message should be more than %d.\n", 
+              (sizeof(message_header_t) + sizeof(qmessage_header_t)));
+      continue;
+    }
+
+    if(packet_length != get_message_length((message_header_t *)data)) {
+      PRINTF("Invalid query message.\n");
+      continue;
+    }
+
+    qmessage_header = (qmessage_header_t *)((message_header_t *)data + 1);
+    // Set query root address to the node's address
+    rimeaddr_copy(&qmessage_header->qroot, &rimeaddr_node_addr);
+    packetbuf_clear();
+    packetbuf_reference(data, packet_length);
+
+    qprocessor_send_data(&rimeaddr_null);
+  }
+  PROCESS_END();
+}
+/*---------------------------------------------------------------------------*/
+void 
+tikiridb_init()
+{
+  routing_open(&routing_conn, ROUTING_CHANNEL, &routing_callbacks);
+  qprocessor_init(&qprocessor_callbacks);
+  process_start(&tikiridb_process, NULL);
+  packetizer_init();
+  tikiridb_arch_init();
+}
+
+

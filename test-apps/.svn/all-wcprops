@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/tikiridb/!svn/ver/386/tags/0.2/test-apps
+END
+test-routing.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/tikiridb/!svn/ver/386/tags/0.2/test-apps/test-routing.c
+END
+test-squery-cooja.csc
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/tikiridb/!svn/ver/386/tags/0.2/test-apps/test-squery-cooja.csc
+END
+test-squery.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/tikiridb/!svn/ver/386/tags/0.2/test-apps/test-squery.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/tikiridb/!svn/ver/386/tags/0.2/test-apps/Makefile
+END
+test-app-cooja.csc
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/tikiridb/!svn/ver/386/tags/0.2/test-apps/test-app-cooja.csc
+END
+test-app.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/tikiridb/!svn/ver/386/tags/0.2/test-apps/test-app.c
+END

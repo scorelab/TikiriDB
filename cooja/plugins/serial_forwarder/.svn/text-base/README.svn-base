@@ -1,0 +1,18 @@
+Configuring Serial Forwarder plugin with Cooja
+==============================================
+
+1. Copy "serial_forwarder" directory into "tools/cooja/apps" directory.
+
+2. Add the following elements to the "tools/cooja/build.xml" file.  
+   a. As a child element of <target name="clean" depends="init">, add the following
+      <ant antfile="build.xml" dir="apps/serial_forwarder" target="clean" inheritAll="false"/>
+
+   b. As a child element of <target name="jar" depends="jar_cooja"> add the following
+      <ant antfile="build.xml" dir="apps/serial_forwarder" target="jar" inheritAll="false"/>
+      
+3. Replace the variable "DEFAULT_PROJECTDIRS" in the file "tools/cooja/config/external_tools_linux.config"
+   with the following
+   DEFAULT_PROJECTDIRS = [CONTIKI_DIR]/tools/cooja/apps/mrm;[CONTIKI_DIR]/tools/cooja/apps/mspsim;[CONTIKI_DIR]/tools/cooja/apps/avrora;[CONTIKI_DIR]/tools/cooja/apps/serial_forwarder
+
+4. The plugin will be in the plugins section for each node.
+   (right click on the node -> Open mote plugin for... -> Serial Forwarder)

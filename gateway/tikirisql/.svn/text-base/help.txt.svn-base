@@ -1,0 +1,35 @@
+===========================================================================
+TikiriSQL qyery syntax:
+
+SELECT <sensor>,<sensor>,<sensor>|<*>
+FROM <sensors>|<buffer>
+WHERE <sensor>|<value> [ =,<>,<,>,<=,>= ] <sensor>|<value>
+SAMPLE PERIOD <seconds>
+FOR <seconds>
+
+Eg:
+
+SELECT temp,humid,node FROM sensors SAMPLE PERIOD 1 FOR 10;
+SELECT node,temp FROM sensors WHERE temp < 20 SAMPLE PERIOD 2 FOR 10;
+SELECT node,temp FROM sensors WHERE temp = 20 SAMPLE PERIOD 2 FOR 10;
+SELECT node,temp FROM sensors WHERE temp <> 20 SAMPLE PERIOD 2 FOR 10;
+SELECT temp,humid,node FROM sensors WHERE nodeid < 10 SAMPLE PERIOD 1 FOR 10;
+
+===========================================================================
+Setting hostname and port dinamically:
+HOST <host_name> PORT <port>; 
+
+Eg:
+HOST ::1 PORT  25601;
+PORT 25602  localhost;
+
+===========================================================================
+List of all TikirSQL commands:
+Note that all text commands must be first on line and end with ';'
+
+help      (\h) Display this help.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+quit      (\q) Quit tikirisql.
+
+===========================================================================
+

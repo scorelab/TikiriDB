@@ -1,0 +1,22 @@
+TIKIRIDB_SOURCEFILES = tikiridb.c packetizer.c 
+
+PROJECT_SOURCEFILES += $(TIKIRIDB_SOURCEFILES)
+
+QPROCESSOR_DIR = $(TIKIRIDB_DIR)/qprocessor
+ROUTING_DIR = $(TIKIRIDB_DIR)/routing
+
+PROJECTDIRS += $(TIKIRIDB_DIR) $(QPROCESSOR_DIR) $(ROUTING_DIR)
+
+include $(QPROCESSOR_DIR)/Makefile.qprocessor
+include $(ROUTING_DIR)/Makefile.routing
+
+### Include target makefile for modified sources
+
+target_makefile_for_modified := $(wildcard $(TIKIRIDB_DIR)/platform-modified/$(TARGET)/Makefile.$(TARGET))
+
+# Check if the target makefile exists
+ifeq ($(strip $(target_makefile_for_modified)),)
+  ${error The target platform "$(TARGET)" does not exist (maybe it was misspelled?)}
+else
+  include $(TIKIRIDB_DIR)/platform-modified/$(TARGET)/Makefile.$(TARGET)
+endif

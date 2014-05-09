@@ -1,0 +1,7 @@
+1. Multi-line statement insertion
+2. History browse with UP and DOWN arrow keys
+3. Back-end local database connectivity
+4. TikiriSQL PHP module
+5. TikiriSQL as a server
+6. Multi query support
+7. Advanced user interface using TUI(ncurses) or GUI(python)

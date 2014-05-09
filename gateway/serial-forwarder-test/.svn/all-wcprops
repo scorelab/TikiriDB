@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/serial-forwarder-test
+END
+main.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/serial-forwarder-test/main.c
+END
+sf-client.c
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/serial-forwarder-test/sf-client.c
+END
+rimeaddr.c
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/serial-forwarder-test/rimeaddr.c
+END
+socket.c
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/serial-forwarder-test/socket.c
+END
+sf-client.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/serial-forwarder-test/sf-client.h
+END
+version.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/serial-forwarder-test/version.h
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/serial-forwarder-test/Makefile
+END
+rimeaddr.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/serial-forwarder-test/rimeaddr.h
+END
+socket.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/tikiridb/!svn/ver/386/tags/0.2/gateway/serial-forwarder-test/socket.h
+END

@@ -1,0 +1,8 @@
+
+TIKIRIDB_SOURCES = packetizer-arch.c tikiridb-arch.c
+
+SKY_MODIFIED_DIR = $(TIKIRIDB_DIR)/platform-modified/sky
+
+PROJECT_SOURCEFILES += $(TIKIRIDB_SOURCES)
+
+PROJECTDIRS += $(SKY_MODIFIED_DIR)

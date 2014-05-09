@@ -1,0 +1,32 @@
+CC = cc 
+LIBS = -ly -ll 
+LEX = lex -I
+YACC = yacc -dv
+CFLAGS = -DYYDEBUG=1 -g
+RM = rm -f
+#INCLUDE = -I/opt/contiki-2.x/core/
+INCLUDE = 
+PREFIX = tikiri
+
+all:	$(PREFIX)sql
+
+$(PREFIX)sql:	$(PREFIX)sqll.o $(PREFIX)sqly.o 
+	$(CC) -o $(PREFIX)sql $(PREFIX)sqll.o $(PREFIX)sqly.o sf_client.o parser_helper.o socket.o nw-types.o rimeaddr.o $(LIBS)  $(INCLUDE)
+
+$(PREFIX)sqll.o: $(PREFIX)sqll.c
+	$(CC) -c $(PREFIX)sqll.c sf_client.c parser_helper.c socket.c nw-types.c rimeaddr.c $(INCLUDE)
+
+$(PREFIX)sqly.o: $(PREFIX)sqly.c
+	$(CC) -c $(PREFIX)sqly.c sf_client.c parser_helper.c socket.c nw-types.c rimeaddr.c $(INCLUDE)
+
+$(PREFIX)sqll.c: $(PREFIX)sqly.c
+	$(LEX) -o $(PREFIX)sqll.c $(PREFIX)sql.l
+
+$(PREFIX)sqly.c:
+	$(YACC) -o $(PREFIX)sqly.c $(PREFIX)sql.y
+
+
+clean:
+	$(RM) $(PREFIX)sqll.c $(PREFIX)sqly.c $(PREFIX)sqll.o $(PREFIX)sqly.o \
+		$(PREFIX)sqly.h $(PREFIX)sqly.output $(PREFIX)sqltext.o sf_client.o \
+      parser_helper.o socket.o  nw-types.o rimeaddr.o

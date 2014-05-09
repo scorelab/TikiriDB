@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder
+END
+cooja.config
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder/cooja.config
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder/README
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/tikiridb/!svn/ver/386/tags/0.2/cooja/plugins/serial_forwarder/build.xml
+END

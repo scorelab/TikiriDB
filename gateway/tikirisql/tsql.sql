@@ -1,0 +1,1 @@
+SELECT temp FROM sensors SAMPLE PERIOD 1 FOR 10;

@@ -1,0 +1,11 @@
+ROUTING_SOURCEFILES = routing.c
+#routing-netflood.c
+
+#TIKIRIMC_DIR = $(ROUTING_DIR)/tikirimc
+
+#PROJECTDIRS += $(TIKIRIMC_DIR)
+
+#include $(TIKIRIMC_DIR)/Makefile.tikirimc
+
+PROJECT_SOURCEFILES += $(ROUTING_SOURCEFILES)
+

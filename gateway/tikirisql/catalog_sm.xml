@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<attributes>
+	<attribute>
+		<name>nodeid</name>
+		<type>uint16</type>
+		<minval>0</minval>
+		<maxval>1000</maxval>
+		<isConstant>true</isConstant>
+		<joulesPerSample>0</joulesPerSample>
+	</attribute>
+	<attribute>
+		<name>light</name>
+		<type>uint16</type>
+		<minval>0</minval>
+		<maxval>1024</maxval>
+		<isConstant>false</isConstant>
+		<joulesPerSample>.01</joulesPerSample>
+	</attribute>
+	<attribute>
+		<name>temp</name>
+		<type>uint16</type>
+		<minval>0</minval>
+		<maxval>1024</maxval>
+		<isConstant>false</isConstant>
+		<joulesPerSample>.01</joulesPerSample>
+	</attribute>
+	<attribute>
+		<name>parent</name>
+		<type>uint16</type>
+		<minval>0</minval>
+		<maxval>1000</maxval>
+		<isConstant>true</isConstant>
+		<joulesPerSample>0</joulesPerSample>
+	</attribute>
+</attributes>

@@ -1,0 +1,25 @@
+CONTIKI = ../../contiki-2.7
+
+ifndef TARGET
+TARGET=cooja
+endif
+
+
+TIKIRIDB_DIR = ../node
+
+
+ifeq ($(TARGET),)
+  TARGET=cooja
+endif
+
+ifeq ($(TARGET),micaz)
+DEFINES += QUEUEBUF_CONF_NUM=4,PLATFORM_AVR
+endif
+
+all: test-app
+
+include $(TIKIRIDB_DIR)/Makefile.tikiridb
+
+include $(CONTIKI)/Makefile.include
+
+

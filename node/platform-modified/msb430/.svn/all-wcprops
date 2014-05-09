@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/platform-modified/msb430
+END
+Makefile.msb430
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/platform-modified/msb430/Makefile.msb430
+END
+packetizer-arch.c
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/platform-modified/msb430/packetizer-arch.c
+END
+tikiridb-arch.c
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/platform-modified/msb430/tikiridb-arch.c
+END

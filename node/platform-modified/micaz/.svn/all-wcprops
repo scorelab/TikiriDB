@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/platform-modified/micaz
+END
+Makefile.micaz
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/platform-modified/micaz/Makefile.micaz
+END
+packetizer-arch.c
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/platform-modified/micaz/packetizer-arch.c
+END
+tikiridb-arch.c
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/tikiridb/!svn/ver/386/tags/0.2/node/platform-modified/micaz/tikiridb-arch.c
+END

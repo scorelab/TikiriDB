@@ -1,0 +1,5 @@
+1. A mechanism to stop running queries(this also would be a query). 
+2. Data aggregation(i.e: averaging).
+3. Storage point creating and deletion.
+4. Implement tree based multicast routing.
+4. Optimizing memory usage.
