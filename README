@@ -151,6 +151,7 @@ Example queries:
 SELECT temp,humid,node FROM sensors SAMPLE PERIOD 1;
 SELECT node,temp FROM sensors WHERE temp = 20 SAMPLE PERIOD 2 FOR 100;
 SELECT temp,humid,node FROM sensors WHERE nodeid < 10 SAMPLE PERIOD 1 FOR 10;
+SELECT node,temp FROM sensors WHERE temp <> 20 SAMPLE PERIOD 2 FOR 10;
 
 
 TODO
