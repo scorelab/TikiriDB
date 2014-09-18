@@ -49,6 +49,11 @@ int_to_char_arr(int val, unsigned char *pBytes);
 int
 set_sample_period(int i);
 
+
+/*Store the LIFETIME of the query*/
+int set_lifetime_period(int i);
+
+
 /*Store the FOR duration of the query*/
 int
 set_for_period(int i);

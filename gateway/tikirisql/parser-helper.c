@@ -102,6 +102,16 @@ set_sample_period(int i)
   sample_period = i;
 }
 
+
+int lifetime_period = 0;
+set_lifetime_period(int i)
+{
+  lifetime_period = i;
+  //LOG_DEBUG("lifetime_period:%d\n",lifetime_period);
+}
+
+
+
 /*---------------------------------------------------------------------------*/
 set_for_period(int i)
 {

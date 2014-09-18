@@ -60,7 +60,8 @@
      QUERY = 278,
      SAMPLE = 279,
      FOR = 280,
-     PERIOD = 281
+     PERIOD = 281,
+     LIFETIME = 282
    };
 #endif
 /* Tokens.  */
@@ -88,6 +89,7 @@
 #define SAMPLE 279
 #define FOR 280
 #define PERIOD 281
+#define LIFETIME 282
 
 
 
@@ -106,7 +108,7 @@ typedef union YYSTYPE
 
 
 /* Line 2068 of yacc.c  */
-#line 110 "tikirisqly.h"
+#line 112 "tikirisqly.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

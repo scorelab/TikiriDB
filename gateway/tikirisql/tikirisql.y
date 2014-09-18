@@ -96,6 +96,8 @@ char *host = DEFAULT_HOST;
 %token FOR
 %token PERIOD
 
+%token LIFETIME
+
 
 	/*SELECT nodeid,light,temp FROM sensors SAMPLE PERIOD 1s FOR 10s*/
 %%
@@ -127,6 +129,14 @@ select_statement:
    {
       send_query_to_sf(host,port);
    }
+   
+   
+   | SELECT column_commalist from_clause lifetime_period ';'
+   {
+      send_query_to_sf(host,port);
+   }
+   
+   
    ;
 
 create_statement:
@@ -213,6 +223,16 @@ sample_period:
    set_for_period($3);
 	}
    ;
+
+
+lifetime_period:
+   LIFETIME INTNUM{
+   set_lifetime_period($2);
+	}
+   ;
+
+
+
 
 for_clause:
    FOR INTNUM{

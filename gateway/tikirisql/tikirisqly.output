@@ -18,161 +18,167 @@ Grammar
     8                 | SELECT column_commalist from_clause sample_period ';'
     9                 | SELECT column_commalist from_clause where_clause sample_period for_clause ';'
    10                 | SELECT column_commalist from_clause where_clause sample_period ';'
+   11                 | SELECT column_commalist from_clause lifetime_period ';'
 
-   11 create_statement: CREATE STORE store_name SIZE INTNUM AS '(' nested_select ')' ';'
+   12 create_statement: CREATE STORE store_name SIZE INTNUM AS '(' nested_select ')' ';'
 
-   12 event_statement: ON EVENT event_name '(' event_param ')' DO '(' nested_select ')' ';'
+   13 event_statement: ON EVENT event_name '(' event_param ')' DO '(' nested_select ')' ';'
 
-   13 delete_statement: DELETE QUERY INTNUM ';'
+   14 delete_statement: DELETE QUERY INTNUM ';'
 
-   14 nested_select: SELECT column_commalist from_clause sample_period for_clause
-   15              | SELECT column_commalist from_clause sample_period
-   16              | SELECT column_commalist from_clause where_clause sample_period for_clause
-   17              | SELECT column_commalist from_clause where_clause sample_period
+   15 nested_select: SELECT column_commalist from_clause sample_period for_clause
+   16              | SELECT column_commalist from_clause sample_period
+   17              | SELECT column_commalist from_clause where_clause sample_period for_clause
+   18              | SELECT column_commalist from_clause where_clause sample_period
 
-   18 column_commalist: column
-   19                 | column_commalist ',' column
+   19 column_commalist: column
+   20                 | column_commalist ',' column
 
-   20 column: NAME
+   21 column: NAME
 
-   21 from_clause: FROM table
+   22 from_clause: FROM table
 
-   22 table: NAME
+   23 table: NAME
 
-   23 store_name: NAME
+   24 store_name: NAME
 
-   24 event_name: NAME
+   25 event_name: NAME
 
-   25 event_param: INTNUM
+   26 event_param: INTNUM
 
-   26 sample_period: SAMPLE PERIOD INTNUM
+   27 sample_period: SAMPLE PERIOD INTNUM
 
-   27 for_clause: FOR INTNUM
+   28 lifetime_period: LIFETIME INTNUM
 
-   28 where_clause: WHERE search_condition
+   29 for_clause: FOR INTNUM
 
-   29 search_condition: search_condition OR search_condition
-   30                 | search_condition AND search_condition
-   31                 | NOT search_condition
-   32                 | '(' search_condition ')'
-   33                 | predicate
+   30 where_clause: WHERE search_condition
 
-   34 predicate: comparison_predicate
+   31 search_condition: search_condition OR search_condition
+   32                 | search_condition AND search_condition
+   33                 | NOT search_condition
+   34                 | '(' search_condition ')'
+   35                 | predicate
 
-   35 comparison_predicate: scalar_exp COMPARISON scalar_exp
+   36 predicate: comparison_predicate
 
-   36 scalar_exp: scalar_exp '+' scalar_exp
-   37           | scalar_exp '-' scalar_exp
-   38           | scalar_exp '*' scalar_exp
-   39           | scalar_exp '/' scalar_exp
-   40           | lvalue
-   41           | rvalue
-   42           | '(' scalar_exp ')'
+   37 comparison_predicate: scalar_exp COMPARISON scalar_exp
 
-   43 rvalue: INTNUM
+   38 scalar_exp: scalar_exp '+' scalar_exp
+   39           | scalar_exp '-' scalar_exp
+   40           | scalar_exp '*' scalar_exp
+   41           | scalar_exp '/' scalar_exp
+   42           | lvalue
+   43           | rvalue
+   44           | '(' scalar_exp ')'
 
-   44 lvalue: NAME
+   45 rvalue: INTNUM
 
-   45 set_host_port: set_port set_host ';'
-   46              | set_host set_port ';'
+   46 lvalue: NAME
 
-   47 set_port: PORT INTNUM
+   47 set_host_port: set_port set_host ';'
+   48              | set_host set_port ';'
 
-   48 set_host: HOST NAME
+   49 set_port: PORT INTNUM
+
+   50 set_host: HOST NAME
 
 
 Terminals, with rules where they appear
 
 $end (0) 0
-'(' (40) 11 12 32 42
-')' (41) 11 12 32 42
-'*' (42) 38
-'+' (43) 36
-',' (44) 19
-'-' (45) 37
-'/' (47) 39
-';' (59) 7 8 9 10 11 12 13 45 46
+'(' (40) 12 13 34 44
+')' (41) 12 13 34 44
+'*' (42) 40
+'+' (43) 38
+',' (44) 20
+'-' (45) 39
+'/' (47) 41
+';' (59) 7 8 9 10 11 12 13 14 47 48
 error (256)
-PORT (258) 47
-HOST (259) 48
-NAME (260) 20 22 23 24 44 48
+PORT (258) 49
+HOST (259) 50
+NAME (260) 21 23 24 25 46 50
 STRING (261)
-INTNUM (262) 11 13 25 26 27 43 47
-NOT (263) 31
-AND (264) 30
-OR (265) 29
-COMPARISON (266) 35
-WHERE (267) 28
-SELECT (268) 7 8 9 10 14 15 16 17
-FROM (269) 21
-CREATE (270) 11
-STORE (271) 11
-SIZE (272) 11
-AS (273) 11
-ON (274) 12
-EVENT (275) 12
-DO (276) 12
-DELETE (277) 13
-QUERY (278) 13
-SAMPLE (279) 26
-FOR (280) 27
-PERIOD (281) 26
+INTNUM (262) 12 14 26 27 28 29 45 49
+NOT (263) 33
+AND (264) 32
+OR (265) 31
+COMPARISON (266) 37
+WHERE (267) 30
+SELECT (268) 7 8 9 10 11 15 16 17 18
+FROM (269) 22
+CREATE (270) 12
+STORE (271) 12
+SIZE (272) 12
+AS (273) 12
+ON (274) 13
+EVENT (275) 13
+DO (276) 13
+DELETE (277) 14
+QUERY (278) 14
+SAMPLE (279) 27
+FOR (280) 29
+PERIOD (281) 27
+LIFETIME (282) 28
 
 
 Nonterminals, with rules where they appear
 
-$accept (35)
+$accept (36)
     on left: 0
-sql (36)
+sql (37)
     on left: 1 2 3 4 5 6, on right: 0
-select_statement (37)
-    on left: 7 8 9 10, on right: 3
-create_statement (38)
-    on left: 11, on right: 4
-event_statement (39)
-    on left: 12, on right: 5
-delete_statement (40)
-    on left: 13, on right: 6
-nested_select (41)
-    on left: 14 15 16 17, on right: 11 12
-column_commalist (42)
-    on left: 18 19, on right: 7 8 9 10 14 15 16 17 19
-column (43)
-    on left: 20, on right: 18 19
-from_clause (44)
-    on left: 21, on right: 7 8 9 10 14 15 16 17
-table (45)
-    on left: 22, on right: 21
-store_name (46)
-    on left: 23, on right: 11
-event_name (47)
+select_statement (38)
+    on left: 7 8 9 10 11, on right: 3
+create_statement (39)
+    on left: 12, on right: 4
+event_statement (40)
+    on left: 13, on right: 5
+delete_statement (41)
+    on left: 14, on right: 6
+nested_select (42)
+    on left: 15 16 17 18, on right: 12 13
+column_commalist (43)
+    on left: 19 20, on right: 7 8 9 10 11 15 16 17 18 20
+column (44)
+    on left: 21, on right: 19 20
+from_clause (45)
+    on left: 22, on right: 7 8 9 10 11 15 16 17 18
+table (46)
+    on left: 23, on right: 22
+store_name (47)
     on left: 24, on right: 12
-event_param (48)
-    on left: 25, on right: 12
-sample_period (49)
-    on left: 26, on right: 7 8 9 10 14 15 16 17
-for_clause (50)
-    on left: 27, on right: 7 9 14 16
-where_clause (51)
-    on left: 28, on right: 9 10 16 17
-search_condition (52)
-    on left: 29 30 31 32 33, on right: 28 29 30 31 32
-predicate (53)
-    on left: 34, on right: 33
-comparison_predicate (54)
-    on left: 35, on right: 34
-scalar_exp (55)
-    on left: 36 37 38 39 40 41 42, on right: 35 36 37 38 39 42
-rvalue (56)
-    on left: 43, on right: 41
-lvalue (57)
-    on left: 44, on right: 40
-set_host_port (58)
-    on left: 45 46, on right: 2
-set_port (59)
-    on left: 47, on right: 45 46
-set_host (60)
-    on left: 48, on right: 45 46
+event_name (48)
+    on left: 25, on right: 13
+event_param (49)
+    on left: 26, on right: 13
+sample_period (50)
+    on left: 27, on right: 7 8 9 10 15 16 17 18
+lifetime_period (51)
+    on left: 28, on right: 11
+for_clause (52)
+    on left: 29, on right: 7 9 15 17
+where_clause (53)
+    on left: 30, on right: 9 10 17 18
+search_condition (54)
+    on left: 31 32 33 34 35, on right: 30 31 32 33 34
+predicate (55)
+    on left: 36, on right: 35
+comparison_predicate (56)
+    on left: 37, on right: 36
+scalar_exp (57)
+    on left: 38 39 40 41 42 43 44, on right: 37 38 39 40 41 44
+rvalue (58)
+    on left: 45, on right: 43
+lvalue (59)
+    on left: 46, on right: 42
+set_host_port (60)
+    on left: 47 48, on right: 2
+set_port (61)
+    on left: 49, on right: 47 48
+set_host (62)
+    on left: 50, on right: 47 48
 
 
 state 0
@@ -200,14 +206,14 @@ state 0
 
 state 1
 
-   47 set_port: PORT . INTNUM
+   49 set_port: PORT . INTNUM
 
     INTNUM  shift, and go to state 15
 
 
 state 2
 
-   48 set_host: HOST . NAME
+   50 set_host: HOST . NAME
 
     NAME  shift, and go to state 16
 
@@ -218,6 +224,7 @@ state 3
     8                 | SELECT . column_commalist from_clause sample_period ';'
     9                 | SELECT . column_commalist from_clause where_clause sample_period for_clause ';'
    10                 | SELECT . column_commalist from_clause where_clause sample_period ';'
+   11                 | SELECT . column_commalist from_clause lifetime_period ';'
 
     NAME  shift, and go to state 17
 
@@ -227,21 +234,21 @@ state 3
 
 state 4
 
-   11 create_statement: CREATE . STORE store_name SIZE INTNUM AS '(' nested_select ')' ';'
+   12 create_statement: CREATE . STORE store_name SIZE INTNUM AS '(' nested_select ')' ';'
 
     STORE  shift, and go to state 20
 
 
 state 5
 
-   12 event_statement: ON . EVENT event_name '(' event_param ')' DO '(' nested_select ')' ';'
+   13 event_statement: ON . EVENT event_name '(' event_param ')' DO '(' nested_select ')' ';'
 
     EVENT  shift, and go to state 21
 
 
 state 6
 
-   13 delete_statement: DELETE . QUERY INTNUM ';'
+   14 delete_statement: DELETE . QUERY INTNUM ';'
 
     QUERY  shift, and go to state 22
 
@@ -290,7 +297,7 @@ state 12
 
 state 13
 
-   45 set_host_port: set_port . set_host ';'
+   47 set_host_port: set_port . set_host ';'
 
     HOST  shift, and go to state 2
 
@@ -299,7 +306,7 @@ state 13
 
 state 14
 
-   46 set_host_port: set_host . set_port ';'
+   48 set_host_port: set_host . set_port ';'
 
     PORT  shift, and go to state 1
 
@@ -308,23 +315,23 @@ state 14
 
 state 15
 
-   47 set_port: PORT INTNUM .
+   49 set_port: PORT INTNUM .
 
-    $default  reduce using rule 47 (set_port)
+    $default  reduce using rule 49 (set_port)
 
 
 state 16
 
-   48 set_host: HOST NAME .
+   50 set_host: HOST NAME .
 
-    $default  reduce using rule 48 (set_host)
+    $default  reduce using rule 50 (set_host)
 
 
 state 17
 
-   20 column: NAME .
+   21 column: NAME .
 
-    $default  reduce using rule 20 (column)
+    $default  reduce using rule 21 (column)
 
 
 state 18
@@ -333,7 +340,8 @@ state 18
     8                 | SELECT column_commalist . from_clause sample_period ';'
     9                 | SELECT column_commalist . from_clause where_clause sample_period for_clause ';'
    10                 | SELECT column_commalist . from_clause where_clause sample_period ';'
-   19 column_commalist: column_commalist . ',' column
+   11                 | SELECT column_commalist . from_clause lifetime_period ';'
+   20 column_commalist: column_commalist . ',' column
 
     FROM  shift, and go to state 26
     ','   shift, and go to state 27
@@ -343,14 +351,14 @@ state 18
 
 state 19
 
-   18 column_commalist: column .
+   19 column_commalist: column .
 
-    $default  reduce using rule 18 (column_commalist)
+    $default  reduce using rule 19 (column_commalist)
 
 
 state 20
 
-   11 create_statement: CREATE STORE . store_name SIZE INTNUM AS '(' nested_select ')' ';'
+   12 create_statement: CREATE STORE . store_name SIZE INTNUM AS '(' nested_select ')' ';'
 
     NAME  shift, and go to state 29
 
@@ -359,7 +367,7 @@ state 20
 
 state 21
 
-   12 event_statement: ON EVENT . event_name '(' event_param ')' DO '(' nested_select ')' ';'
+   13 event_statement: ON EVENT . event_name '(' event_param ')' DO '(' nested_select ')' ';'
 
     NAME  shift, and go to state 31
 
@@ -368,7 +376,7 @@ state 21
 
 state 22
 
-   13 delete_statement: DELETE QUERY . INTNUM ';'
+   14 delete_statement: DELETE QUERY . INTNUM ';'
 
     INTNUM  shift, and go to state 33
 
@@ -382,21 +390,21 @@ state 23
 
 state 24
 
-   45 set_host_port: set_port set_host . ';'
+   47 set_host_port: set_port set_host . ';'
 
     ';'  shift, and go to state 34
 
 
 state 25
 
-   46 set_host_port: set_host set_port . ';'
+   48 set_host_port: set_host set_port . ';'
 
     ';'  shift, and go to state 35
 
 
 state 26
 
-   21 from_clause: FROM . table
+   22 from_clause: FROM . table
 
     NAME  shift, and go to state 36
 
@@ -405,7 +413,7 @@ state 26
 
 state 27
 
-   19 column_commalist: column_commalist ',' . column
+   20 column_commalist: column_commalist ',' . column
 
     NAME  shift, and go to state 17
 
@@ -418,779 +426,810 @@ state 28
     8                 | SELECT column_commalist from_clause . sample_period ';'
     9                 | SELECT column_commalist from_clause . where_clause sample_period for_clause ';'
    10                 | SELECT column_commalist from_clause . where_clause sample_period ';'
+   11                 | SELECT column_commalist from_clause . lifetime_period ';'
 
-    WHERE   shift, and go to state 39
-    SAMPLE  shift, and go to state 40
+    WHERE     shift, and go to state 39
+    SAMPLE    shift, and go to state 40
+    LIFETIME  shift, and go to state 41
 
-    sample_period  go to state 41
-    where_clause   go to state 42
+    sample_period    go to state 42
+    lifetime_period  go to state 43
+    where_clause     go to state 44
 
 
 state 29
 
-   23 store_name: NAME .
+   24 store_name: NAME .
 
-    $default  reduce using rule 23 (store_name)
+    $default  reduce using rule 24 (store_name)
 
 
 state 30
 
-   11 create_statement: CREATE STORE store_name . SIZE INTNUM AS '(' nested_select ')' ';'
+   12 create_statement: CREATE STORE store_name . SIZE INTNUM AS '(' nested_select ')' ';'
 
-    SIZE  shift, and go to state 43
+    SIZE  shift, and go to state 45
 
 
 state 31
 
-   24 event_name: NAME .
+   25 event_name: NAME .
 
-    $default  reduce using rule 24 (event_name)
+    $default  reduce using rule 25 (event_name)
 
 
 state 32
 
-   12 event_statement: ON EVENT event_name . '(' event_param ')' DO '(' nested_select ')' ';'
+   13 event_statement: ON EVENT event_name . '(' event_param ')' DO '(' nested_select ')' ';'
 
-    '('  shift, and go to state 44
+    '('  shift, and go to state 46
 
 
 state 33
 
-   13 delete_statement: DELETE QUERY INTNUM . ';'
+   14 delete_statement: DELETE QUERY INTNUM . ';'
 
-    ';'  shift, and go to state 45
+    ';'  shift, and go to state 47
 
 
 state 34
 
-   45 set_host_port: set_port set_host ';' .
+   47 set_host_port: set_port set_host ';' .
 
-    $default  reduce using rule 45 (set_host_port)
+    $default  reduce using rule 47 (set_host_port)
 
 
 state 35
 
-   46 set_host_port: set_host set_port ';' .
+   48 set_host_port: set_host set_port ';' .
 
-    $default  reduce using rule 46 (set_host_port)
+    $default  reduce using rule 48 (set_host_port)
 
 
 state 36
 
-   22 table: NAME .
+   23 table: NAME .
 
-    $default  reduce using rule 22 (table)
+    $default  reduce using rule 23 (table)
 
 
 state 37
 
-   21 from_clause: FROM table .
+   22 from_clause: FROM table .
 
-    $default  reduce using rule 21 (from_clause)
+    $default  reduce using rule 22 (from_clause)
 
 
 state 38
 
-   19 column_commalist: column_commalist ',' column .
+   20 column_commalist: column_commalist ',' column .
 
-    $default  reduce using rule 19 (column_commalist)
+    $default  reduce using rule 20 (column_commalist)
 
 
 state 39
 
-   28 where_clause: WHERE . search_condition
+   30 where_clause: WHERE . search_condition
 
-    NAME    shift, and go to state 46
-    INTNUM  shift, and go to state 47
-    NOT     shift, and go to state 48
-    '('     shift, and go to state 49
+    NAME    shift, and go to state 48
+    INTNUM  shift, and go to state 49
+    NOT     shift, and go to state 50
+    '('     shift, and go to state 51
 
-    search_condition      go to state 50
-    predicate             go to state 51
-    comparison_predicate  go to state 52
-    scalar_exp            go to state 53
-    rvalue                go to state 54
-    lvalue                go to state 55
+    search_condition      go to state 52
+    predicate             go to state 53
+    comparison_predicate  go to state 54
+    scalar_exp            go to state 55
+    rvalue                go to state 56
+    lvalue                go to state 57
 
 
 state 40
 
-   26 sample_period: SAMPLE . PERIOD INTNUM
+   27 sample_period: SAMPLE . PERIOD INTNUM
 
-    PERIOD  shift, and go to state 56
+    PERIOD  shift, and go to state 58
 
 
 state 41
 
-    7 select_statement: SELECT column_commalist from_clause sample_period . for_clause ';'
-    8                 | SELECT column_commalist from_clause sample_period . ';'
+   28 lifetime_period: LIFETIME . INTNUM
 
-    FOR  shift, and go to state 57
-    ';'  shift, and go to state 58
-
-    for_clause  go to state 59
+    INTNUM  shift, and go to state 59
 
 
 state 42
+
+    7 select_statement: SELECT column_commalist from_clause sample_period . for_clause ';'
+    8                 | SELECT column_commalist from_clause sample_period . ';'
+
+    FOR  shift, and go to state 60
+    ';'  shift, and go to state 61
+
+    for_clause  go to state 62
+
+
+state 43
+
+   11 select_statement: SELECT column_commalist from_clause lifetime_period . ';'
+
+    ';'  shift, and go to state 63
+
+
+state 44
 
     9 select_statement: SELECT column_commalist from_clause where_clause . sample_period for_clause ';'
    10                 | SELECT column_commalist from_clause where_clause . sample_period ';'
 
     SAMPLE  shift, and go to state 40
 
-    sample_period  go to state 60
-
-
-state 43
-
-   11 create_statement: CREATE STORE store_name SIZE . INTNUM AS '(' nested_select ')' ';'
-
-    INTNUM  shift, and go to state 61
-
-
-state 44
-
-   12 event_statement: ON EVENT event_name '(' . event_param ')' DO '(' nested_select ')' ';'
-
-    INTNUM  shift, and go to state 62
-
-    event_param  go to state 63
+    sample_period  go to state 64
 
 
 state 45
 
-   13 delete_statement: DELETE QUERY INTNUM ';' .
+   12 create_statement: CREATE STORE store_name SIZE . INTNUM AS '(' nested_select ')' ';'
 
-    $default  reduce using rule 13 (delete_statement)
+    INTNUM  shift, and go to state 65
 
 
 state 46
 
-   44 lvalue: NAME .
+   13 event_statement: ON EVENT event_name '(' . event_param ')' DO '(' nested_select ')' ';'
 
-    $default  reduce using rule 44 (lvalue)
+    INTNUM  shift, and go to state 66
+
+    event_param  go to state 67
 
 
 state 47
 
-   43 rvalue: INTNUM .
+   14 delete_statement: DELETE QUERY INTNUM ';' .
 
-    $default  reduce using rule 43 (rvalue)
+    $default  reduce using rule 14 (delete_statement)
 
 
 state 48
 
-   31 search_condition: NOT . search_condition
+   46 lvalue: NAME .
 
-    NAME    shift, and go to state 46
-    INTNUM  shift, and go to state 47
-    NOT     shift, and go to state 48
-    '('     shift, and go to state 49
-
-    search_condition      go to state 64
-    predicate             go to state 51
-    comparison_predicate  go to state 52
-    scalar_exp            go to state 53
-    rvalue                go to state 54
-    lvalue                go to state 55
+    $default  reduce using rule 46 (lvalue)
 
 
 state 49
 
-   32 search_condition: '(' . search_condition ')'
-   42 scalar_exp: '(' . scalar_exp ')'
+   45 rvalue: INTNUM .
 
-    NAME    shift, and go to state 46
-    INTNUM  shift, and go to state 47
-    NOT     shift, and go to state 48
-    '('     shift, and go to state 49
-
-    search_condition      go to state 65
-    predicate             go to state 51
-    comparison_predicate  go to state 52
-    scalar_exp            go to state 66
-    rvalue                go to state 54
-    lvalue                go to state 55
+    $default  reduce using rule 45 (rvalue)
 
 
 state 50
 
-   28 where_clause: WHERE search_condition .
-   29 search_condition: search_condition . OR search_condition
-   30                 | search_condition . AND search_condition
+   33 search_condition: NOT . search_condition
 
-    AND  shift, and go to state 67
-    OR   shift, and go to state 68
+    NAME    shift, and go to state 48
+    INTNUM  shift, and go to state 49
+    NOT     shift, and go to state 50
+    '('     shift, and go to state 51
 
-    $default  reduce using rule 28 (where_clause)
+    search_condition      go to state 68
+    predicate             go to state 53
+    comparison_predicate  go to state 54
+    scalar_exp            go to state 55
+    rvalue                go to state 56
+    lvalue                go to state 57
 
 
 state 51
 
-   33 search_condition: predicate .
+   34 search_condition: '(' . search_condition ')'
+   44 scalar_exp: '(' . scalar_exp ')'
 
-    $default  reduce using rule 33 (search_condition)
+    NAME    shift, and go to state 48
+    INTNUM  shift, and go to state 49
+    NOT     shift, and go to state 50
+    '('     shift, and go to state 51
+
+    search_condition      go to state 69
+    predicate             go to state 53
+    comparison_predicate  go to state 54
+    scalar_exp            go to state 70
+    rvalue                go to state 56
+    lvalue                go to state 57
 
 
 state 52
 
-   34 predicate: comparison_predicate .
+   30 where_clause: WHERE search_condition .
+   31 search_condition: search_condition . OR search_condition
+   32                 | search_condition . AND search_condition
 
-    $default  reduce using rule 34 (predicate)
+    AND  shift, and go to state 71
+    OR   shift, and go to state 72
+
+    $default  reduce using rule 30 (where_clause)
 
 
 state 53
 
-   35 comparison_predicate: scalar_exp . COMPARISON scalar_exp
-   36 scalar_exp: scalar_exp . '+' scalar_exp
-   37           | scalar_exp . '-' scalar_exp
-   38           | scalar_exp . '*' scalar_exp
-   39           | scalar_exp . '/' scalar_exp
+   35 search_condition: predicate .
 
-    COMPARISON  shift, and go to state 69
-    '+'         shift, and go to state 70
-    '-'         shift, and go to state 71
-    '*'         shift, and go to state 72
-    '/'         shift, and go to state 73
+    $default  reduce using rule 35 (search_condition)
 
 
 state 54
 
-   41 scalar_exp: rvalue .
+   36 predicate: comparison_predicate .
 
-    $default  reduce using rule 41 (scalar_exp)
+    $default  reduce using rule 36 (predicate)
 
 
 state 55
 
-   40 scalar_exp: lvalue .
+   37 comparison_predicate: scalar_exp . COMPARISON scalar_exp
+   38 scalar_exp: scalar_exp . '+' scalar_exp
+   39           | scalar_exp . '-' scalar_exp
+   40           | scalar_exp . '*' scalar_exp
+   41           | scalar_exp . '/' scalar_exp
 
-    $default  reduce using rule 40 (scalar_exp)
+    COMPARISON  shift, and go to state 73
+    '+'         shift, and go to state 74
+    '-'         shift, and go to state 75
+    '*'         shift, and go to state 76
+    '/'         shift, and go to state 77
 
 
 state 56
 
-   26 sample_period: SAMPLE PERIOD . INTNUM
+   43 scalar_exp: rvalue .
 
-    INTNUM  shift, and go to state 74
+    $default  reduce using rule 43 (scalar_exp)
 
 
 state 57
 
-   27 for_clause: FOR . INTNUM
+   42 scalar_exp: lvalue .
 
-    INTNUM  shift, and go to state 75
+    $default  reduce using rule 42 (scalar_exp)
 
 
 state 58
+
+   27 sample_period: SAMPLE PERIOD . INTNUM
+
+    INTNUM  shift, and go to state 78
+
+
+state 59
+
+   28 lifetime_period: LIFETIME INTNUM .
+
+    $default  reduce using rule 28 (lifetime_period)
+
+
+state 60
+
+   29 for_clause: FOR . INTNUM
+
+    INTNUM  shift, and go to state 79
+
+
+state 61
 
     8 select_statement: SELECT column_commalist from_clause sample_period ';' .
 
     $default  reduce using rule 8 (select_statement)
 
 
-state 59
+state 62
 
     7 select_statement: SELECT column_commalist from_clause sample_period for_clause . ';'
 
-    ';'  shift, and go to state 76
-
-
-state 60
-
-    9 select_statement: SELECT column_commalist from_clause where_clause sample_period . for_clause ';'
-   10                 | SELECT column_commalist from_clause where_clause sample_period . ';'
-
-    FOR  shift, and go to state 57
-    ';'  shift, and go to state 77
-
-    for_clause  go to state 78
-
-
-state 61
-
-   11 create_statement: CREATE STORE store_name SIZE INTNUM . AS '(' nested_select ')' ';'
-
-    AS  shift, and go to state 79
-
-
-state 62
-
-   25 event_param: INTNUM .
-
-    $default  reduce using rule 25 (event_param)
+    ';'  shift, and go to state 80
 
 
 state 63
 
-   12 event_statement: ON EVENT event_name '(' event_param . ')' DO '(' nested_select ')' ';'
+   11 select_statement: SELECT column_commalist from_clause lifetime_period ';' .
 
-    ')'  shift, and go to state 80
+    $default  reduce using rule 11 (select_statement)
 
 
 state 64
 
-   29 search_condition: search_condition . OR search_condition
-   30                 | search_condition . AND search_condition
-   31                 | NOT search_condition .
+    9 select_statement: SELECT column_commalist from_clause where_clause sample_period . for_clause ';'
+   10                 | SELECT column_commalist from_clause where_clause sample_period . ';'
 
-    $default  reduce using rule 31 (search_condition)
+    FOR  shift, and go to state 60
+    ';'  shift, and go to state 81
+
+    for_clause  go to state 82
 
 
 state 65
 
-   29 search_condition: search_condition . OR search_condition
-   30                 | search_condition . AND search_condition
-   32                 | '(' search_condition . ')'
+   12 create_statement: CREATE STORE store_name SIZE INTNUM . AS '(' nested_select ')' ';'
 
-    AND  shift, and go to state 67
-    OR   shift, and go to state 68
-    ')'  shift, and go to state 81
+    AS  shift, and go to state 83
 
 
 state 66
 
-   35 comparison_predicate: scalar_exp . COMPARISON scalar_exp
-   36 scalar_exp: scalar_exp . '+' scalar_exp
-   37           | scalar_exp . '-' scalar_exp
-   38           | scalar_exp . '*' scalar_exp
-   39           | scalar_exp . '/' scalar_exp
-   42           | '(' scalar_exp . ')'
+   26 event_param: INTNUM .
 
-    COMPARISON  shift, and go to state 69
-    '+'         shift, and go to state 70
-    '-'         shift, and go to state 71
-    '*'         shift, and go to state 72
-    '/'         shift, and go to state 73
-    ')'         shift, and go to state 82
+    $default  reduce using rule 26 (event_param)
 
 
 state 67
 
-   30 search_condition: search_condition AND . search_condition
+   13 event_statement: ON EVENT event_name '(' event_param . ')' DO '(' nested_select ')' ';'
 
-    NAME    shift, and go to state 46
-    INTNUM  shift, and go to state 47
-    NOT     shift, and go to state 48
-    '('     shift, and go to state 49
-
-    search_condition      go to state 83
-    predicate             go to state 51
-    comparison_predicate  go to state 52
-    scalar_exp            go to state 53
-    rvalue                go to state 54
-    lvalue                go to state 55
+    ')'  shift, and go to state 84
 
 
 state 68
 
-   29 search_condition: search_condition OR . search_condition
+   31 search_condition: search_condition . OR search_condition
+   32                 | search_condition . AND search_condition
+   33                 | NOT search_condition .
 
-    NAME    shift, and go to state 46
-    INTNUM  shift, and go to state 47
-    NOT     shift, and go to state 48
-    '('     shift, and go to state 49
-
-    search_condition      go to state 84
-    predicate             go to state 51
-    comparison_predicate  go to state 52
-    scalar_exp            go to state 53
-    rvalue                go to state 54
-    lvalue                go to state 55
+    $default  reduce using rule 33 (search_condition)
 
 
 state 69
 
-   35 comparison_predicate: scalar_exp COMPARISON . scalar_exp
+   31 search_condition: search_condition . OR search_condition
+   32                 | search_condition . AND search_condition
+   34                 | '(' search_condition . ')'
 
-    NAME    shift, and go to state 46
-    INTNUM  shift, and go to state 47
-    '('     shift, and go to state 85
-
-    scalar_exp  go to state 86
-    rvalue      go to state 54
-    lvalue      go to state 55
+    AND  shift, and go to state 71
+    OR   shift, and go to state 72
+    ')'  shift, and go to state 85
 
 
 state 70
 
-   36 scalar_exp: scalar_exp '+' . scalar_exp
+   37 comparison_predicate: scalar_exp . COMPARISON scalar_exp
+   38 scalar_exp: scalar_exp . '+' scalar_exp
+   39           | scalar_exp . '-' scalar_exp
+   40           | scalar_exp . '*' scalar_exp
+   41           | scalar_exp . '/' scalar_exp
+   44           | '(' scalar_exp . ')'
 
-    NAME    shift, and go to state 46
-    INTNUM  shift, and go to state 47
-    '('     shift, and go to state 85
-
-    scalar_exp  go to state 87
-    rvalue      go to state 54
-    lvalue      go to state 55
+    COMPARISON  shift, and go to state 73
+    '+'         shift, and go to state 74
+    '-'         shift, and go to state 75
+    '*'         shift, and go to state 76
+    '/'         shift, and go to state 77
+    ')'         shift, and go to state 86
 
 
 state 71
 
-   37 scalar_exp: scalar_exp '-' . scalar_exp
+   32 search_condition: search_condition AND . search_condition
 
-    NAME    shift, and go to state 46
-    INTNUM  shift, and go to state 47
-    '('     shift, and go to state 85
+    NAME    shift, and go to state 48
+    INTNUM  shift, and go to state 49
+    NOT     shift, and go to state 50
+    '('     shift, and go to state 51
 
-    scalar_exp  go to state 88
-    rvalue      go to state 54
-    lvalue      go to state 55
+    search_condition      go to state 87
+    predicate             go to state 53
+    comparison_predicate  go to state 54
+    scalar_exp            go to state 55
+    rvalue                go to state 56
+    lvalue                go to state 57
 
 
 state 72
 
-   38 scalar_exp: scalar_exp '*' . scalar_exp
+   31 search_condition: search_condition OR . search_condition
 
-    NAME    shift, and go to state 46
-    INTNUM  shift, and go to state 47
-    '('     shift, and go to state 85
+    NAME    shift, and go to state 48
+    INTNUM  shift, and go to state 49
+    NOT     shift, and go to state 50
+    '('     shift, and go to state 51
 
-    scalar_exp  go to state 89
-    rvalue      go to state 54
-    lvalue      go to state 55
+    search_condition      go to state 88
+    predicate             go to state 53
+    comparison_predicate  go to state 54
+    scalar_exp            go to state 55
+    rvalue                go to state 56
+    lvalue                go to state 57
 
 
 state 73
 
-   39 scalar_exp: scalar_exp '/' . scalar_exp
+   37 comparison_predicate: scalar_exp COMPARISON . scalar_exp
 
-    NAME    shift, and go to state 46
-    INTNUM  shift, and go to state 47
-    '('     shift, and go to state 85
+    NAME    shift, and go to state 48
+    INTNUM  shift, and go to state 49
+    '('     shift, and go to state 89
 
     scalar_exp  go to state 90
-    rvalue      go to state 54
-    lvalue      go to state 55
+    rvalue      go to state 56
+    lvalue      go to state 57
 
 
 state 74
 
-   26 sample_period: SAMPLE PERIOD INTNUM .
+   38 scalar_exp: scalar_exp '+' . scalar_exp
 
-    $default  reduce using rule 26 (sample_period)
+    NAME    shift, and go to state 48
+    INTNUM  shift, and go to state 49
+    '('     shift, and go to state 89
+
+    scalar_exp  go to state 91
+    rvalue      go to state 56
+    lvalue      go to state 57
 
 
 state 75
 
-   27 for_clause: FOR INTNUM .
+   39 scalar_exp: scalar_exp '-' . scalar_exp
 
-    $default  reduce using rule 27 (for_clause)
+    NAME    shift, and go to state 48
+    INTNUM  shift, and go to state 49
+    '('     shift, and go to state 89
+
+    scalar_exp  go to state 92
+    rvalue      go to state 56
+    lvalue      go to state 57
 
 
 state 76
+
+   40 scalar_exp: scalar_exp '*' . scalar_exp
+
+    NAME    shift, and go to state 48
+    INTNUM  shift, and go to state 49
+    '('     shift, and go to state 89
+
+    scalar_exp  go to state 93
+    rvalue      go to state 56
+    lvalue      go to state 57
+
+
+state 77
+
+   41 scalar_exp: scalar_exp '/' . scalar_exp
+
+    NAME    shift, and go to state 48
+    INTNUM  shift, and go to state 49
+    '('     shift, and go to state 89
+
+    scalar_exp  go to state 94
+    rvalue      go to state 56
+    lvalue      go to state 57
+
+
+state 78
+
+   27 sample_period: SAMPLE PERIOD INTNUM .
+
+    $default  reduce using rule 27 (sample_period)
+
+
+state 79
+
+   29 for_clause: FOR INTNUM .
+
+    $default  reduce using rule 29 (for_clause)
+
+
+state 80
 
     7 select_statement: SELECT column_commalist from_clause sample_period for_clause ';' .
 
     $default  reduce using rule 7 (select_statement)
 
 
-state 77
+state 81
 
    10 select_statement: SELECT column_commalist from_clause where_clause sample_period ';' .
 
     $default  reduce using rule 10 (select_statement)
 
 
-state 78
+state 82
 
     9 select_statement: SELECT column_commalist from_clause where_clause sample_period for_clause . ';'
 
-    ';'  shift, and go to state 91
-
-
-state 79
-
-   11 create_statement: CREATE STORE store_name SIZE INTNUM AS . '(' nested_select ')' ';'
-
-    '('  shift, and go to state 92
-
-
-state 80
-
-   12 event_statement: ON EVENT event_name '(' event_param ')' . DO '(' nested_select ')' ';'
-
-    DO  shift, and go to state 93
-
-
-state 81
-
-   32 search_condition: '(' search_condition ')' .
-
-    $default  reduce using rule 32 (search_condition)
-
-
-state 82
-
-   42 scalar_exp: '(' scalar_exp ')' .
-
-    $default  reduce using rule 42 (scalar_exp)
+    ';'  shift, and go to state 95
 
 
 state 83
 
-   29 search_condition: search_condition . OR search_condition
-   30                 | search_condition . AND search_condition
-   30                 | search_condition AND search_condition .
+   12 create_statement: CREATE STORE store_name SIZE INTNUM AS . '(' nested_select ')' ';'
 
-    $default  reduce using rule 30 (search_condition)
+    '('  shift, and go to state 96
 
 
 state 84
 
-   29 search_condition: search_condition . OR search_condition
-   29                 | search_condition OR search_condition .
-   30                 | search_condition . AND search_condition
+   13 event_statement: ON EVENT event_name '(' event_param ')' . DO '(' nested_select ')' ';'
 
-    $default  reduce using rule 29 (search_condition)
+    DO  shift, and go to state 97
 
 
 state 85
 
-   42 scalar_exp: '(' . scalar_exp ')'
+   34 search_condition: '(' search_condition ')' .
 
-    NAME    shift, and go to state 46
-    INTNUM  shift, and go to state 47
-    '('     shift, and go to state 85
-
-    scalar_exp  go to state 94
-    rvalue      go to state 54
-    lvalue      go to state 55
+    $default  reduce using rule 34 (search_condition)
 
 
 state 86
 
-   35 comparison_predicate: scalar_exp COMPARISON scalar_exp .
-   36 scalar_exp: scalar_exp . '+' scalar_exp
-   37           | scalar_exp . '-' scalar_exp
-   38           | scalar_exp . '*' scalar_exp
-   39           | scalar_exp . '/' scalar_exp
+   44 scalar_exp: '(' scalar_exp ')' .
 
-    '+'  shift, and go to state 70
-    '-'  shift, and go to state 71
-    '*'  shift, and go to state 72
-    '/'  shift, and go to state 73
-
-    $default  reduce using rule 35 (comparison_predicate)
+    $default  reduce using rule 44 (scalar_exp)
 
 
 state 87
 
-   36 scalar_exp: scalar_exp . '+' scalar_exp
-   36           | scalar_exp '+' scalar_exp .
-   37           | scalar_exp . '-' scalar_exp
-   38           | scalar_exp . '*' scalar_exp
-   39           | scalar_exp . '/' scalar_exp
+   31 search_condition: search_condition . OR search_condition
+   32                 | search_condition . AND search_condition
+   32                 | search_condition AND search_condition .
 
-    $default  reduce using rule 36 (scalar_exp)
+    $default  reduce using rule 32 (search_condition)
 
 
 state 88
 
-   36 scalar_exp: scalar_exp . '+' scalar_exp
-   37           | scalar_exp . '-' scalar_exp
-   37           | scalar_exp '-' scalar_exp .
-   38           | scalar_exp . '*' scalar_exp
-   39           | scalar_exp . '/' scalar_exp
+   31 search_condition: search_condition . OR search_condition
+   31                 | search_condition OR search_condition .
+   32                 | search_condition . AND search_condition
 
-    $default  reduce using rule 37 (scalar_exp)
+    $default  reduce using rule 31 (search_condition)
 
 
 state 89
 
-   36 scalar_exp: scalar_exp . '+' scalar_exp
-   37           | scalar_exp . '-' scalar_exp
-   38           | scalar_exp . '*' scalar_exp
-   38           | scalar_exp '*' scalar_exp .
-   39           | scalar_exp . '/' scalar_exp
+   44 scalar_exp: '(' . scalar_exp ')'
 
-    $default  reduce using rule 38 (scalar_exp)
+    NAME    shift, and go to state 48
+    INTNUM  shift, and go to state 49
+    '('     shift, and go to state 89
+
+    scalar_exp  go to state 98
+    rvalue      go to state 56
+    lvalue      go to state 57
 
 
 state 90
 
-   36 scalar_exp: scalar_exp . '+' scalar_exp
-   37           | scalar_exp . '-' scalar_exp
-   38           | scalar_exp . '*' scalar_exp
-   39           | scalar_exp . '/' scalar_exp
-   39           | scalar_exp '/' scalar_exp .
+   37 comparison_predicate: scalar_exp COMPARISON scalar_exp .
+   38 scalar_exp: scalar_exp . '+' scalar_exp
+   39           | scalar_exp . '-' scalar_exp
+   40           | scalar_exp . '*' scalar_exp
+   41           | scalar_exp . '/' scalar_exp
+
+    '+'  shift, and go to state 74
+    '-'  shift, and go to state 75
+    '*'  shift, and go to state 76
+    '/'  shift, and go to state 77
+
+    $default  reduce using rule 37 (comparison_predicate)
+
+
+state 91
+
+   38 scalar_exp: scalar_exp . '+' scalar_exp
+   38           | scalar_exp '+' scalar_exp .
+   39           | scalar_exp . '-' scalar_exp
+   40           | scalar_exp . '*' scalar_exp
+   41           | scalar_exp . '/' scalar_exp
+
+    $default  reduce using rule 38 (scalar_exp)
+
+
+state 92
+
+   38 scalar_exp: scalar_exp . '+' scalar_exp
+   39           | scalar_exp . '-' scalar_exp
+   39           | scalar_exp '-' scalar_exp .
+   40           | scalar_exp . '*' scalar_exp
+   41           | scalar_exp . '/' scalar_exp
 
     $default  reduce using rule 39 (scalar_exp)
 
 
-state 91
+state 93
+
+   38 scalar_exp: scalar_exp . '+' scalar_exp
+   39           | scalar_exp . '-' scalar_exp
+   40           | scalar_exp . '*' scalar_exp
+   40           | scalar_exp '*' scalar_exp .
+   41           | scalar_exp . '/' scalar_exp
+
+    $default  reduce using rule 40 (scalar_exp)
+
+
+state 94
+
+   38 scalar_exp: scalar_exp . '+' scalar_exp
+   39           | scalar_exp . '-' scalar_exp
+   40           | scalar_exp . '*' scalar_exp
+   41           | scalar_exp . '/' scalar_exp
+   41           | scalar_exp '/' scalar_exp .
+
+    $default  reduce using rule 41 (scalar_exp)
+
+
+state 95
 
     9 select_statement: SELECT column_commalist from_clause where_clause sample_period for_clause ';' .
 
     $default  reduce using rule 9 (select_statement)
 
 
-state 92
-
-   11 create_statement: CREATE STORE store_name SIZE INTNUM AS '(' . nested_select ')' ';'
-
-    SELECT  shift, and go to state 95
-
-    nested_select  go to state 96
-
-
-state 93
-
-   12 event_statement: ON EVENT event_name '(' event_param ')' DO . '(' nested_select ')' ';'
-
-    '('  shift, and go to state 97
-
-
-state 94
-
-   36 scalar_exp: scalar_exp . '+' scalar_exp
-   37           | scalar_exp . '-' scalar_exp
-   38           | scalar_exp . '*' scalar_exp
-   39           | scalar_exp . '/' scalar_exp
-   42           | '(' scalar_exp . ')'
-
-    '+'  shift, and go to state 70
-    '-'  shift, and go to state 71
-    '*'  shift, and go to state 72
-    '/'  shift, and go to state 73
-    ')'  shift, and go to state 82
-
-
-state 95
-
-   14 nested_select: SELECT . column_commalist from_clause sample_period for_clause
-   15              | SELECT . column_commalist from_clause sample_period
-   16              | SELECT . column_commalist from_clause where_clause sample_period for_clause
-   17              | SELECT . column_commalist from_clause where_clause sample_period
-
-    NAME  shift, and go to state 17
-
-    column_commalist  go to state 98
-    column            go to state 19
-
-
 state 96
 
-   11 create_statement: CREATE STORE store_name SIZE INTNUM AS '(' nested_select . ')' ';'
+   12 create_statement: CREATE STORE store_name SIZE INTNUM AS '(' . nested_select ')' ';'
 
-    ')'  shift, and go to state 99
-
-
-state 97
-
-   12 event_statement: ON EVENT event_name '(' event_param ')' DO '(' . nested_select ')' ';'
-
-    SELECT  shift, and go to state 95
+    SELECT  shift, and go to state 99
 
     nested_select  go to state 100
 
 
+state 97
+
+   13 event_statement: ON EVENT event_name '(' event_param ')' DO . '(' nested_select ')' ';'
+
+    '('  shift, and go to state 101
+
+
 state 98
 
-   14 nested_select: SELECT column_commalist . from_clause sample_period for_clause
-   15              | SELECT column_commalist . from_clause sample_period
-   16              | SELECT column_commalist . from_clause where_clause sample_period for_clause
-   17              | SELECT column_commalist . from_clause where_clause sample_period
-   19 column_commalist: column_commalist . ',' column
+   38 scalar_exp: scalar_exp . '+' scalar_exp
+   39           | scalar_exp . '-' scalar_exp
+   40           | scalar_exp . '*' scalar_exp
+   41           | scalar_exp . '/' scalar_exp
+   44           | '(' scalar_exp . ')'
 
-    FROM  shift, and go to state 26
-    ','   shift, and go to state 27
-
-    from_clause  go to state 101
+    '+'  shift, and go to state 74
+    '-'  shift, and go to state 75
+    '*'  shift, and go to state 76
+    '/'  shift, and go to state 77
+    ')'  shift, and go to state 86
 
 
 state 99
 
-   11 create_statement: CREATE STORE store_name SIZE INTNUM AS '(' nested_select ')' . ';'
+   15 nested_select: SELECT . column_commalist from_clause sample_period for_clause
+   16              | SELECT . column_commalist from_clause sample_period
+   17              | SELECT . column_commalist from_clause where_clause sample_period for_clause
+   18              | SELECT . column_commalist from_clause where_clause sample_period
 
-    ';'  shift, and go to state 102
+    NAME  shift, and go to state 17
+
+    column_commalist  go to state 102
+    column            go to state 19
 
 
 state 100
 
-   12 event_statement: ON EVENT event_name '(' event_param ')' DO '(' nested_select . ')' ';'
+   12 create_statement: CREATE STORE store_name SIZE INTNUM AS '(' nested_select . ')' ';'
 
     ')'  shift, and go to state 103
 
 
 state 101
 
-   14 nested_select: SELECT column_commalist from_clause . sample_period for_clause
-   15              | SELECT column_commalist from_clause . sample_period
-   16              | SELECT column_commalist from_clause . where_clause sample_period for_clause
-   17              | SELECT column_commalist from_clause . where_clause sample_period
+   13 event_statement: ON EVENT event_name '(' event_param ')' DO '(' . nested_select ')' ';'
 
-    WHERE   shift, and go to state 39
-    SAMPLE  shift, and go to state 40
+    SELECT  shift, and go to state 99
 
-    sample_period  go to state 104
-    where_clause   go to state 105
+    nested_select  go to state 104
 
 
 state 102
 
-   11 create_statement: CREATE STORE store_name SIZE INTNUM AS '(' nested_select ')' ';' .
+   15 nested_select: SELECT column_commalist . from_clause sample_period for_clause
+   16              | SELECT column_commalist . from_clause sample_period
+   17              | SELECT column_commalist . from_clause where_clause sample_period for_clause
+   18              | SELECT column_commalist . from_clause where_clause sample_period
+   20 column_commalist: column_commalist . ',' column
 
-    $default  reduce using rule 11 (create_statement)
+    FROM  shift, and go to state 26
+    ','   shift, and go to state 27
+
+    from_clause  go to state 105
 
 
 state 103
 
-   12 event_statement: ON EVENT event_name '(' event_param ')' DO '(' nested_select ')' . ';'
+   12 create_statement: CREATE STORE store_name SIZE INTNUM AS '(' nested_select ')' . ';'
 
     ';'  shift, and go to state 106
 
 
 state 104
 
-   14 nested_select: SELECT column_commalist from_clause sample_period . for_clause
-   15              | SELECT column_commalist from_clause sample_period .
+   13 event_statement: ON EVENT event_name '(' event_param ')' DO '(' nested_select . ')' ';'
 
-    FOR  shift, and go to state 57
-
-    $default  reduce using rule 15 (nested_select)
-
-    for_clause  go to state 107
+    ')'  shift, and go to state 107
 
 
 state 105
 
-   16 nested_select: SELECT column_commalist from_clause where_clause . sample_period for_clause
-   17              | SELECT column_commalist from_clause where_clause . sample_period
+   15 nested_select: SELECT column_commalist from_clause . sample_period for_clause
+   16              | SELECT column_commalist from_clause . sample_period
+   17              | SELECT column_commalist from_clause . where_clause sample_period for_clause
+   18              | SELECT column_commalist from_clause . where_clause sample_period
 
+    WHERE   shift, and go to state 39
     SAMPLE  shift, and go to state 40
 
     sample_period  go to state 108
+    where_clause   go to state 109
 
 
 state 106
 
-   12 event_statement: ON EVENT event_name '(' event_param ')' DO '(' nested_select ')' ';' .
+   12 create_statement: CREATE STORE store_name SIZE INTNUM AS '(' nested_select ')' ';' .
 
-    $default  reduce using rule 12 (event_statement)
+    $default  reduce using rule 12 (create_statement)
 
 
 state 107
 
-   14 nested_select: SELECT column_commalist from_clause sample_period for_clause .
+   13 event_statement: ON EVENT event_name '(' event_param ')' DO '(' nested_select ')' . ';'
 
-    $default  reduce using rule 14 (nested_select)
+    ';'  shift, and go to state 110
 
 
 state 108
 
-   16 nested_select: SELECT column_commalist from_clause where_clause sample_period . for_clause
-   17              | SELECT column_commalist from_clause where_clause sample_period .
+   15 nested_select: SELECT column_commalist from_clause sample_period . for_clause
+   16              | SELECT column_commalist from_clause sample_period .
 
-    FOR  shift, and go to state 57
+    FOR  shift, and go to state 60
 
-    $default  reduce using rule 17 (nested_select)
+    $default  reduce using rule 16 (nested_select)
 
-    for_clause  go to state 109
+    for_clause  go to state 111
 
 
 state 109
 
-   16 nested_select: SELECT column_commalist from_clause where_clause sample_period for_clause .
+   17 nested_select: SELECT column_commalist from_clause where_clause . sample_period for_clause
+   18              | SELECT column_commalist from_clause where_clause . sample_period
 
-    $default  reduce using rule 16 (nested_select)
+    SAMPLE  shift, and go to state 40
+
+    sample_period  go to state 112
+
+
+state 110
+
+   13 event_statement: ON EVENT event_name '(' event_param ')' DO '(' nested_select ')' ';' .
+
+    $default  reduce using rule 13 (event_statement)
+
+
+state 111
+
+   15 nested_select: SELECT column_commalist from_clause sample_period for_clause .
+
+    $default  reduce using rule 15 (nested_select)
+
+
+state 112
+
+   17 nested_select: SELECT column_commalist from_clause where_clause sample_period . for_clause
+   18              | SELECT column_commalist from_clause where_clause sample_period .
+
+    FOR  shift, and go to state 60
+
+    $default  reduce using rule 18 (nested_select)
+
+    for_clause  go to state 113
+
+
+state 113
+
+   17 nested_select: SELECT column_commalist from_clause where_clause sample_period for_clause .
+
+    $default  reduce using rule 17 (nested_select)
