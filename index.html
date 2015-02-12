@@ -52,7 +52,17 @@ simultaneously from any point of the WSN. Furthermore, a distributed access cont
 incorporated with TikiriDB. Hence, the proposed solution can cover most of the problems arose in a shared WSN environment.
 
  </p>
-
+<h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages">
+<span class="octicon octicon-link"></span> Example queries</a></h3>
+<p>
+<code>
+SELECT temp,humid,node FROM sensors SAMPLE PERIOD 1;<br>
+SELECT node,temp FROM sensors WHERE temp = 20 SAMPLE PERIOD 2 FOR 100;<br>
+SELECT temp,humid,node FROM sensors WHERE nodeid < 10 SAMPLE PERIOD 1 FOR 10;<br>
+SELECT node,temp FROM sensors WHERE temp <> 20 SAMPLE PERIOD 2 FOR 10;<br>
+</code>
+</p>
 <!--
 <h3>
 <a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link">
@@ -98,6 +108,8 @@ incorporated with TikiriDB. Hence, the proposed solution can cover most of the p
         </aside>
       </div>
     </div>
+	<section>
+
 
   
   </body>
