@@ -49,10 +49,20 @@ resources of the sensor nodes. Finally,since, WSN deployments generally use drie
 through simple queries. It is a variation of standard Structured Querying Language (SQL) which adopted and optimized to the sensor network
 environment. The query processor and the routing protocol of TikiriDB are designed to facilitate acquiring data by many users
 simultaneously from any point of the WSN. Furthermore, a distributed access control mechanism using public-key infrastructure was
-incorporated with TikiriDB. Hence, the proposedsolution can cover most of the problems arose in a shared WSN environment.
+incorporated with TikiriDB. Hence, the proposed solution can cover most of the problems arose in a shared WSN environment.
 
  </p>
-
+<h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages">
+<span class="octicon octicon-link"></span> Example queries</a></h3>
+<p>
+<code>
+SELECT temp,humid,node FROM sensors SAMPLE PERIOD 1;<br>
+SELECT node,temp FROM sensors WHERE temp = 20 SAMPLE PERIOD 2 FOR 100;<br>
+SELECT temp,humid,node FROM sensors WHERE nodeid < 10 SAMPLE PERIOD 1 FOR 10;<br>
+SELECT node,temp FROM sensors WHERE temp <> 20 SAMPLE PERIOD 2 FOR 10;<br>
+</code>
+</p>
 <!--
 <h3>
 <a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link">
@@ -98,6 +108,8 @@ incorporated with TikiriDB. Hence, the proposedsolution can cover most of the pr
         </aside>
       </div>
     </div>
+	<section>
+
 
   
   </body>
